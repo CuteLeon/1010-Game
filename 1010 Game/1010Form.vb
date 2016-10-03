@@ -117,6 +117,11 @@
         Dim ObjectLabel As Label = CType(sender, Label)
         RemoveHandler ObjectLabel.MouseMove, AddressOf ObjectLabel_MouseMove
 
+        ObjectLabel.Size = New Size(80, 80)
+        ObjectLabel.Image = New Bitmap(ObjectLabel.Image, 80, 80)
+        '恢复 ObjectLabel 的位置
+        ObjectLabel.Location = ObjectLabelLocation(ObjectLabel.Tag)
+
         If MoveToGameAera(ObjectLabel.Tag) Then
             '拖入游戏区成功！
             IsFullInLine()
@@ -125,11 +130,9 @@
             ObjectLabel.Hide()
             ObjectCount -= 1
             If ObjectCount = 0 Then CreateNewObject()
+
+            If IsGameOver() Then GameOver()
         End If
-        ObjectLabel.Size = New Size(80, 80)
-        ObjectLabel.Image = New Bitmap(ObjectLabel.Image, 80, 80)
-        '恢复 ObjectLabel 的位置
-        ObjectLabel.Location = ObjectLabelLocation(ObjectLabel.Tag)
     End Sub
 
     ''' <summary>
@@ -139,8 +142,8 @@
     ''' <returns>是否拖入成功</returns>
     Private Function MoveToGameAera(ByVal Index As Integer) As Boolean
         Dim IndexX, IndexY As Integer '当前鼠标位置对应的 CardData 坐标
-        Dim PointInObjectModel As Point
         Dim PointsInGameAera(0) As Point
+        Dim PointInObjectModel As Point
         Dim PointInGameAera As Point
         IndexY = (MousePosition.X - PaddingSize - MousePointInLabel.X - Me.Left) \ (CardSize + MarginSize)
         IndexX = (MousePosition.Y - PaddingSize - TitleHeight - MousePointInLabel.Y - Me.Top) \ (CardSize + MarginSize)
@@ -232,16 +235,56 @@
     ''' <returns></returns>
     Private Function IsGameOver() As Boolean
         Dim Index As Integer
-        Dim IndexX, IndexY As Integer
-        Dim CanPutObjectIn As Boolean
-        For Index = 0 To 2
-            For IndexY = 0 To 9
-                CanPutObjectIn = True
-                For IndexX = 0 To 9
+        Dim PointX, PointY As Integer
+        Dim Result As Boolean
 
+        For Index = 0 To 2
+            If ObjectLabels(Index).Visible Then
+                For PointY = 0 To 9
+                    For PointX = 0 To 9
+                        Result = CanPutItIn(PointX, PointY, ObjectType(Index))
+                        If Result Then Exit For
+                    Next
+                    If Result Then Exit For
                 Next
-            Next
+                If Result Then Exit For
+            End If
         Next
-        Return False
+        Return Not Result
     End Function
+
+    ''' <summary>
+    ''' 检测 ObjectType 对应的物体能否放在 CardData(PointX,PointY) 里
+    ''' </summary>
+    ''' <param name="PointX"></param>
+    ''' <param name="PointY"></param>
+    ''' <param name="ObjectType"></param>
+    ''' <returns>能否放置</returns>
+    Private Function CanPutItIn(ByVal PointX As Integer, ByVal PointY As Integer, ByVal ObjectType As Integer) As Boolean
+        Dim PointInObjectModel As Point
+        Dim PointInGameAera As Point
+        For PointIndex As Integer = 0 To 8
+            PointInObjectModel = ObjectModel(ObjectType, PointIndex)
+            If PointInObjectModel.Equals(EmptyPoint) Then Exit For
+            PointInGameAera.X = PointX + PointInObjectModel.X
+            PointInGameAera.Y = PointY + PointInObjectModel.Y
+            If PointInGameAera.X < 0 OrElse PointInGameAera.X > 9 OrElse PointInGameAera.Y < 0 OrElse PointInGameAera.Y > 9 Then Return False
+            If CardData(PointInGameAera.X, PointInGameAera.Y) Then
+                Return False
+            End If
+        Next
+        Return True
+    End Function
+
+    ''' <summary>
+    ''' 游戏结束
+    ''' </summary>
+    Private Sub GameOver()
+        MsgBox("得分：" & Score, 64, "游戏结束：")
+        Score = 0
+        ScoreLabel.Text = "0"
+        ReDim CardData(9, 9)
+        CreateNewObject()
+        DrawForm()
+    End Sub
 End Class
