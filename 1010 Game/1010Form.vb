@@ -45,7 +45,10 @@
         ObjectLabelLocation = {ObjectLabel0.Location, ObjectLabel1.Location, ObjectLabel2.Location}
         ObjectLabels = {ObjectLabel0, ObjectLabel1, ObjectLabel2}
 
-        CreateNewObject()
+        For Index As Integer = 0 To 100
+            CreateNewObject()
+        Next
+
         DrawForm()
     End Sub
 
@@ -86,7 +89,8 @@
         ObjectLabel1.Show()
         ObjectLabel2.Show()
         For Index As Integer = 0 To 2
-            ObjectType(Index) = VBMath.Rnd * 19
+            ObjectType(Index) = VBMath.Rnd * 18
+            Debug.Print(ObjectType(Index))
             ObjectColor(Index) = Color.FromArgb(255, VBMath.Rnd * 255, VBMath.Rnd * 255, VBMath.Rnd * 255)
             Dim CardBitmap As Bitmap = New Bitmap(80, 80)
             Using CardGraphics As Graphics = Graphics.FromImage(CardBitmap)
