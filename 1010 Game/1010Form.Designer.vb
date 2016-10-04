@@ -22,6 +22,7 @@ Partial Class GameForm
     '不要使用代码编辑器修改它。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GameForm))
         Me.ScoreLabel = New System.Windows.Forms.Label()
         Me.ObjectLabel0 = New System.Windows.Forms.Label()
         Me.ObjectLabel1 = New System.Windows.Forms.Label()
@@ -79,9 +80,10 @@ Partial Class GameForm
         Me.Controls.Add(Me.ScoreLabel)
         Me.DoubleBuffered = True
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "GameForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "1010 Game"
+        Me.Text = "1010"
         Me.ResumeLayout(False)
 
     End Sub
