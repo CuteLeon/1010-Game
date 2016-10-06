@@ -51,7 +51,8 @@
         ObjectLabels = {ObjectLabel0, ObjectLabel1, ObjectLabel2}
         '创建三个新物体
         CreateNewObject()
-        '计算 MaskLabel 的坐标（使用一层蒙版模拟出圆角效果，PS:"色彩范围"选取10x10个灰色小矩形后，"选择"菜单>"修改">"平滑">输入"2"）
+        '计算 MaskLabel 的坐标，使用控件当做蒙版模拟出圆角效果，不需要重复绘制，节省计算能力
+        'PS操作: "色彩范围"选取10x10个灰色小矩形后，"选择"菜单>"修改">"平滑">输入"2"
         MaskLabel.Location = New Point(PaddingSize - 1, PaddingSize + TitleHeight - 1)
         '刷新界面
         DrawForm()

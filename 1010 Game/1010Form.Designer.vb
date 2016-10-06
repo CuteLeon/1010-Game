@@ -77,7 +77,6 @@ Partial Class GameForm
         Me.MaskLabel.Name = "MaskLabel"
         Me.MaskLabel.Size = New System.Drawing.Size(280, 280)
         Me.MaskLabel.TabIndex = 5
-        Me.MaskLabel.Visible = False
         '
         'GameForm
         '
