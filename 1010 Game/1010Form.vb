@@ -5,7 +5,7 @@
     Private Const TitleHeight As Integer = 70 '标题栏高度
     Private Const MarginSize As Integer = 2 '卡片之间的间距
     Private Const PaddingSize As Integer = 30 '裁片集中区域与窗体边框的距离
-    Private Const CardSize As Integer = 25 '卡片尺寸
+    Private Const CardSize As Integer = 26 '卡片尺寸
     Dim ScoreList() As Integer = {0, 10, 30, 60, 100, 150, 210}
     Dim EmptyPoint As Point = New Point(-1, -1)
     Dim MousePointInLabel As Point '用于记录鼠标拖动标签时鼠标坐标与标签起点差值
@@ -149,8 +149,8 @@
         Dim PointsInGameAera(0) As Point
         Dim PointInObjectModel As Point
         Dim PointInGameAera As Point
-        IndexY = (MousePosition.X - PaddingSize - MousePointInLabel.X - Me.Left) \ (CardSize + MarginSize)
-        IndexX = (MousePosition.Y - PaddingSize - TitleHeight - MousePointInLabel.Y - Me.Top) \ (CardSize + MarginSize)
+        IndexY = Math.Round((MousePosition.X - PaddingSize - MousePointInLabel.X - Me.Left) / (CardSize + MarginSize))
+        IndexX = Math.Round((MousePosition.Y - PaddingSize - TitleHeight - MousePointInLabel.Y - Me.Top) / (CardSize + MarginSize))
         If IndexX < 0 OrElse IndexX > 9 OrElse IndexY < 0 OrElse IndexY > 9 Then Return False
         For PointIndex As Integer = 0 To 8
             PointInObjectModel = ObjectModel(ObjectType(Index), PointIndex)
