@@ -11,8 +11,9 @@
     Dim MousePointInLabel As Point '用于记录鼠标拖动标签时鼠标坐标与标签起点差值
     Dim Score As Integer = 0 '分数
     Dim Moved As Boolean '定义一个标识，记录是否发生了移动，以确定操作是否有效
-    Dim BlankColor As Color = Color.FromArgb(100, Color.Gray)
+    Dim BlankColor As Color = Color.FromArgb(100, Color.DarkGray)
     Dim ObjectLabelLocation() As Point
+    Dim CardColor() As Color = {Color.Yellow, Color.FromArgb(253, 198, 11), Color.Orange, Color.OrangeRed, Color.Red, Color.PaleVioletRed, Color.Violet, Color.BlueViolet, Color.Blue, Color.Green, Color.YellowGreen, Color.FromArgb(255, 6, 150, 187)} '伊登12色环
     Dim CardData(9, 9) As Boolean
     Dim ColorData(9, 9) As Color
     Dim ObjectType(2) As Integer '记录新产生的三个物体类型在 ObjectModel 里的标识
@@ -99,7 +100,8 @@
         For Index As Integer = 0 To 2
             '随机产生物体模型标识和颜色
             ObjectType(Index) = VBMath.Rnd * 18
-            ObjectColor(Index) = Color.FromArgb(255, VBMath.Rnd * 255, VBMath.Rnd * 255, VBMath.Rnd * 255)
+            ObjectColor(Index) = CardColor(VBMath.Rnd * 11)
+            'ObjectColor(Index) = Color.FromArgb(255, VBMath.Rnd * 255, VBMath.Rnd * 255, VBMath.Rnd * 255)
             '恢复控件的坐标，方便改变控件大小后重新居中对齐控件（首次生成时不需要恢复坐标）
             If ObjectImage(Index) IsNot Nothing Then ObjectLabels(Index).Location = New Point(ObjectLabels(Index).Left + ObjectImage(Index).Width / 4, ObjectLabels(Index).Top + ObjectImage(Index).Height / 4)
             '使用 ObjectSize 数组产生对应大小的物体图像
@@ -270,26 +272,18 @@
         Score += ScoreList(FulledColumn.Count + FulledLine.Count)
 
         '清除整行或整列
-        If FulledLine.Count > 0 Then
-            For IndexY = 0 To UBound(FulledLine)
-                For IndexX = 0 To 9
+        If FulledLine.Count > 0 OrElse FulledColumn.Count > 0 Then
+            For IndexX = 0 To 9
+                For IndexY = 0 To UBound(FulledLine)
                     CardData(FulledLine(IndexY), IndexX) = False
                     '用于显示整行消失动态效果
-                    Threading.Thread.Sleep(30)
-                    DrawForm()
-                    Me.Refresh()
                 Next
-            Next
-        End If
-        If FulledColumn.Count > 0 Then
-            For IndexX = 0 To UBound(FulledColumn)
-                For IndexY = 0 To 9
-                    CardData(IndexY, FulledColumn(IndexX)) = False
-                    '用于显示整列消失动态效果
-                    Threading.Thread.Sleep(30)
-                    DrawForm()
-                    Me.Refresh()
+                For IndexY = 0 To UBound(FulledColumn)
+                    CardData(IndexX, FulledColumn(IndexY)) = False
                 Next
+                Threading.Thread.Sleep(25)
+                DrawForm()
+                Me.Refresh()
             Next
         End If
     End Sub
