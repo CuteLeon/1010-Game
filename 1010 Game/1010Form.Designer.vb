@@ -27,6 +27,7 @@ Partial Class GameForm
         Me.ObjectLabel0 = New System.Windows.Forms.Label()
         Me.ObjectLabel1 = New System.Windows.Forms.Label()
         Me.ObjectLabel2 = New System.Windows.Forms.Label()
+        Me.MaskLabel = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'ScoreLabel
@@ -68,12 +69,23 @@ Partial Class GameForm
         Me.ObjectLabel2.TabIndex = 4
         Me.ObjectLabel2.Tag = "2"
         '
+        'MaskLabel
+        '
+        Me.MaskLabel.BackColor = System.Drawing.Color.Transparent
+        Me.MaskLabel.Image = Global._1010_Game.My.Resources._1010Resource.Mask
+        Me.MaskLabel.Location = New System.Drawing.Point(40, 88)
+        Me.MaskLabel.Name = "MaskLabel"
+        Me.MaskLabel.Size = New System.Drawing.Size(280, 280)
+        Me.MaskLabel.TabIndex = 5
+        Me.MaskLabel.Visible = False
+        '
         'GameForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = Global._1010_Game.My.Resources._1010Resource.Background
         Me.ClientSize = New System.Drawing.Size(450, 400)
+        Me.Controls.Add(Me.MaskLabel)
         Me.Controls.Add(Me.ObjectLabel2)
         Me.Controls.Add(Me.ObjectLabel1)
         Me.Controls.Add(Me.ObjectLabel0)
@@ -92,4 +104,5 @@ Partial Class GameForm
     Friend WithEvents ObjectLabel0 As Label
     Friend WithEvents ObjectLabel1 As Label
     Friend WithEvents ObjectLabel2 As Label
+    Friend WithEvents MaskLabel As Label
 End Class
