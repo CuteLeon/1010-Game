@@ -44,27 +44,27 @@ Partial Class GameForm
         'ObjectLabel0
         '
         Me.ObjectLabel0.BackColor = System.Drawing.Color.Transparent
-        Me.ObjectLabel0.Location = New System.Drawing.Point(340, 115)
+        Me.ObjectLabel0.Location = New System.Drawing.Point(380, 155)
         Me.ObjectLabel0.Name = "ObjectLabel0"
-        Me.ObjectLabel0.Size = New System.Drawing.Size(80, 80)
+        Me.ObjectLabel0.Size = New System.Drawing.Size(0, 0)
         Me.ObjectLabel0.TabIndex = 2
         Me.ObjectLabel0.Tag = "0"
         '
         'ObjectLabel1
         '
         Me.ObjectLabel1.BackColor = System.Drawing.Color.Transparent
-        Me.ObjectLabel1.Location = New System.Drawing.Point(340, 200)
+        Me.ObjectLabel1.Location = New System.Drawing.Point(380, 240)
         Me.ObjectLabel1.Name = "ObjectLabel1"
-        Me.ObjectLabel1.Size = New System.Drawing.Size(80, 80)
+        Me.ObjectLabel1.Size = New System.Drawing.Size(0, 0)
         Me.ObjectLabel1.TabIndex = 3
         Me.ObjectLabel1.Tag = "1"
         '
         'ObjectLabel2
         '
         Me.ObjectLabel2.BackColor = System.Drawing.Color.Transparent
-        Me.ObjectLabel2.Location = New System.Drawing.Point(340, 285)
+        Me.ObjectLabel2.Location = New System.Drawing.Point(380, 325)
         Me.ObjectLabel2.Name = "ObjectLabel2"
-        Me.ObjectLabel2.Size = New System.Drawing.Size(80, 80)
+        Me.ObjectLabel2.Size = New System.Drawing.Size(0, 0)
         Me.ObjectLabel2.TabIndex = 4
         Me.ObjectLabel2.Tag = "2"
         '
