@@ -90,7 +90,6 @@
         ObjectLabel2.Show()
         For Index As Integer = 0 To 2
             ObjectType(Index) = VBMath.Rnd * 18
-            Debug.Print(ObjectType(Index))
             ObjectColor(Index) = Color.FromArgb(255, VBMath.Rnd * 255, VBMath.Rnd * 255, VBMath.Rnd * 255)
             Dim CardBitmap As Bitmap = New Bitmap(80, 80)
             Using CardGraphics As Graphics = Graphics.FromImage(CardBitmap)
@@ -109,6 +108,7 @@
         ObjectLabel.Size = New Size(135, 135)
         ObjectLabel.Image = New Bitmap(ObjectLabel.Image, 135, 135)
         MousePointInLabel = e.Location
+        'Me.Cursor = New Cursor(New Bitmap(ObjectLabel.Image).GetHicon)
         AddHandler ObjectLabel.MouseMove, AddressOf ObjectLabel_MouseMove
     End Sub
 
@@ -120,21 +120,19 @@
     Private Sub ObjectLabel_MouseUp(sender As Object, e As MouseEventArgs) Handles ObjectLabel0.MouseUp, ObjectLabel1.MouseUp, ObjectLabel2.MouseUp
         Dim ObjectLabel As Label = CType(sender, Label)
         RemoveHandler ObjectLabel.MouseMove, AddressOf ObjectLabel_MouseMove
-
+        'Me.Cursor = Me.DefaultCursor
         ObjectLabel.Size = New Size(80, 80)
         ObjectLabel.Image = New Bitmap(ObjectLabel.Image, 80, 80)
         '恢复 ObjectLabel 的位置
         ObjectLabel.Location = ObjectLabelLocation(ObjectLabel.Tag)
 
         If MoveToGameAera(ObjectLabel.Tag) Then
-            '拖入游戏区成功！
-            IsFullInLine()
-
-            DrawForm()
+            '拖入游戏区成功！首先隐藏控件、再检查整行整列、刷新界面
             ObjectLabel.Hide()
+            IsFullInLine()
+            DrawForm()
             ObjectCount -= 1
             If ObjectCount = 0 Then CreateNewObject()
-
             If IsGameOver() Then GameOver()
         End If
     End Sub
@@ -221,6 +219,10 @@
             For IndexY = 0 To UBound(FulledLine)
                 For IndexX = 0 To 9
                     CardData(FulledLine(IndexY), IndexX) = False
+                    '用于显示整行消失动态效果
+                    Threading.Thread.Sleep(30)
+                    DrawForm()
+                    Me.Refresh()
                 Next
             Next
         End If
@@ -228,6 +230,10 @@
             For IndexX = 0 To UBound(FulledColumn)
                 For IndexY = 0 To 9
                     CardData(IndexY, FulledColumn(IndexX)) = False
+                    '用于显示整列消失动态效果
+                    Threading.Thread.Sleep(30)
+                    DrawForm()
+                    Me.Refresh()
                 Next
             Next
         End If
