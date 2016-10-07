@@ -14,19 +14,15 @@
     Dim BlankColor As Color = Color.FromArgb(100, Color.DarkGray)
     Dim ObjectLabelLocation() As Point
     Dim CardColor() As Color = {
-        Color.FromArgb(255, 231, 20, 17),
-        Color.FromArgb(255, 230, 29, 120),
-        Color.FromArgb(255, 171, 83, 155),
-        Color.FromArgb(255, 87, 68, 153),
-        Color.FromArgb(255, 30, 73, 158),
-        Color.FromArgb(255, 44, 114, 185),
-        Color.FromArgb(255, 112, 199, 213),
-        Color.FromArgb(255, 109, 189, 112),
-        Color.FromArgb(255, 106, 184, 45),
-        Color.FromArgb(255, 143, 195, 34),
-        Color.FromArgb(255, 238, 234, 56),
-        Color.FromArgb(255, 239, 124, 26)
-        } '伊登12色环
+        Color.FromArgb(255, 121, 136, 191),
+        Color.FromArgb(255, 254, 198, 61),
+        Color.FromArgb(255, 87, 203, 132),
+        Color.FromArgb(255, 236, 149, 72),
+        Color.FromArgb(255, 152, 220, 83),
+        Color.FromArgb(255, 230, 106, 130),
+        Color.FromArgb(255, 90, 190, 226),
+        Color.FromArgb(255, 76, 212, 174)
+        }
     Dim CardData(9, 9) As Boolean
     Dim ColorData(9, 9) As Color
     Dim ObjectType(2) As Integer '记录新产生的三个物体类型在 ObjectModel 里的标识
@@ -113,7 +109,7 @@
         For Index As Integer = 0 To 2
             '随机产生物体模型标识和颜色
             ObjectType(Index) = VBMath.Rnd * 18
-            ObjectColor(Index) = CardColor(VBMath.Rnd * 11)
+            ObjectColor(Index) = CardColor(VBMath.Rnd * 7)
             'ObjectColor(Index) = Color.FromArgb(255, VBMath.Rnd * 255, VBMath.Rnd * 255, VBMath.Rnd * 255)
             '恢复控件的坐标，方便改变控件大小后重新居中对齐控件（首次生成时不需要恢复坐标）
             If ObjectImage(Index) IsNot Nothing Then ObjectLabels(Index).Location = New Point(ObjectLabels(Index).Left + ObjectImage(Index).Width / 4, ObjectLabels(Index).Top + ObjectImage(Index).Height / 4)
