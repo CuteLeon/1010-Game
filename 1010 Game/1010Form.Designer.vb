@@ -28,6 +28,7 @@ Partial Class GameForm
         Me.ObjectLabel1 = New System.Windows.Forms.Label()
         Me.ObjectLabel2 = New System.Windows.Forms.Label()
         Me.MaskLabel = New System.Windows.Forms.Label()
+        Me.CloseButton = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'ScoreLabel
@@ -78,12 +79,22 @@ Partial Class GameForm
         Me.MaskLabel.Size = New System.Drawing.Size(280, 280)
         Me.MaskLabel.TabIndex = 5
         '
+        'CloseButton
+        '
+        Me.CloseButton.BackColor = System.Drawing.Color.Transparent
+        Me.CloseButton.Image = Global._1010_Game.My.Resources._1010Resource.GameClose_0
+        Me.CloseButton.Location = New System.Drawing.Point(404, 12)
+        Me.CloseButton.Name = "CloseButton"
+        Me.CloseButton.Size = New System.Drawing.Size(25, 25)
+        Me.CloseButton.TabIndex = 6
+        '
         'GameForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = Global._1010_Game.My.Resources._1010Resource.Background
         Me.ClientSize = New System.Drawing.Size(450, 400)
+        Me.Controls.Add(Me.CloseButton)
         Me.Controls.Add(Me.MaskLabel)
         Me.Controls.Add(Me.ObjectLabel2)
         Me.Controls.Add(Me.ObjectLabel1)
@@ -104,4 +115,5 @@ Partial Class GameForm
     Friend WithEvents ObjectLabel1 As Label
     Friend WithEvents ObjectLabel2 As Label
     Friend WithEvents MaskLabel As Label
+    Friend WithEvents CloseButton As Label
 End Class

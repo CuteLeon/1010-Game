@@ -368,4 +368,28 @@
         '刷新界面
         DrawForm()
     End Sub
+
+#Region "关闭按钮"
+
+    Private Sub CloseButton_Click(sender As Object, e As EventArgs) Handles CloseButton.Click
+        If MsgBox("真的要退出吗？", MsgBoxStyle.Question Or MsgBoxStyle.OkCancel, "1010 Game") = MsgBoxResult.Ok Then End
+    End Sub
+
+    Private Sub CloseButton_MouseDown(sender As Object, e As MouseEventArgs) Handles CloseButton.MouseDown
+        CloseButton.Image = My.Resources._1010Resource.GameClose_2
+    End Sub
+
+    Private Sub CloseButton_MouseEnter(sender As Object, e As EventArgs) Handles CloseButton.MouseEnter
+        CloseButton.Image = My.Resources._1010Resource.GameClose_1
+    End Sub
+
+    Private Sub CloseButton_MouseLeave(sender As Object, e As EventArgs) Handles CloseButton.MouseLeave
+        CloseButton.Image = My.Resources._1010Resource.GameClose_0
+    End Sub
+
+    Private Sub CloseButton_MouseUp(sender As Object, e As MouseEventArgs) Handles CloseButton.MouseUp
+        CloseButton.Image = My.Resources._1010Resource.GameClose_1
+    End Sub
+
+#End Region
 End Class
