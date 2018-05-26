@@ -34,14 +34,14 @@ Partial Class GameForm
         'ScoreLabel
         '
         Me.ScoreLabel.BackColor = System.Drawing.Color.Transparent
-        Me.ScoreLabel.Font = New System.Drawing.Font("微软雅黑", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.ScoreLabel.ForeColor = System.Drawing.Color.Gray
-        Me.ScoreLabel.Location = New System.Drawing.Point(268, 32)
+        Me.ScoreLabel.Font = New System.Drawing.Font("微软雅黑", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.ScoreLabel.ForeColor = System.Drawing.Color.DimGray
+        Me.ScoreLabel.Location = New System.Drawing.Point(256, 39)
         Me.ScoreLabel.Name = "ScoreLabel"
-        Me.ScoreLabel.Size = New System.Drawing.Size(115, 40)
+        Me.ScoreLabel.Size = New System.Drawing.Size(120, 32)
         Me.ScoreLabel.TabIndex = 1
         Me.ScoreLabel.Text = "0"
-        Me.ScoreLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.ScoreLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'ObjectLabel0
         '
